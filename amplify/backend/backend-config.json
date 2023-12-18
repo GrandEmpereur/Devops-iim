@@ -1,1 +1,69 @@
-{}
+{
+  "api": {
+    "api18b79b30": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "devops1b317f9c"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "auth": {
+    "devops": {
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "managed"
+    }
+  },
+  "function": {
+    "devops1b317f9c": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_devops1b317f9c_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "devops1b317f9c"
+        }
+      ]
+    },
+    "AMPLIFY_function_devops1b317f9c_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "devops1b317f9c"
+        }
+      ]
+    }
+  }
+}
