@@ -29,7 +29,7 @@
       "function": {
         "devops1b317f9c": {
           "deploymentBucketName": "amplify-devops-patrickdev-141036-deployment",
-          "s3Key": "amplify-builds/devops1b317f9c-686c5a6a576a6b305a53-build.zip"
+          "s3Key": "amplify-builds/devops1b317f9c-6d2f7177665842676270-build.zip"
         }
       },
       "auth": {
@@ -37,6 +37,9 @@
       },
       "api": {
         "api18b79b30": {}
+      },
+      "storage": {
+        "dynamobe91bca0": {}
       }
     }
   }

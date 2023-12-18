@@ -1,0 +1,10 @@
+{
+  "resourceName": "dynamobe91bca0",
+  "tableName": "Users",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "number"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
