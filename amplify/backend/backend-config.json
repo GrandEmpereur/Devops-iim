@@ -1,75 +1,45 @@
 {
   "api": {
-    "api18b79b30": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "devops1b317f9c"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "API Gateway"
-    }
-  },
-  "auth": {
-    "devops": {
+    "devopstodo": {
       "dependsOn": [],
-      "frontendAuthConfig": {
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [],
-          "passwordPolicyMinLength": 8
-        },
-        "signupAttributes": [
-          "EMAIL"
-        ],
-        "socialProviders": [],
-        "usernameAttributes": [],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
       },
       "providerPlugin": "awscloudformation",
-      "service": "Cognito",
-      "serviceType": "managed"
+      "service": "AppSync"
     }
   },
-  "function": {
-    "devops1b317f9c": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
+  "hosting": {
+    "amplifyhosting": {
+      "lastPushTimeStamp": "2023-12-19T14:43:06.027Z",
+      "service": "amplifyhosting",
+      "type": "cicd"
     }
   },
   "parameters": {
-    "AMPLIFY_function_devops1b317f9c_deploymentBucketName": {
+    "AMPLIFY_hosting_amplifyhosting_appId": {
       "usedBy": [
         {
-          "category": "function",
-          "resourceName": "devops1b317f9c"
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
         }
       ]
     },
-    "AMPLIFY_function_devops1b317f9c_s3Key": {
+    "AMPLIFY_hosting_amplifyhosting_type": {
       "usedBy": [
         {
-          "category": "function",
-          "resourceName": "devops1b317f9c"
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
         }
       ]
-    }
-  },
-  "storage": {
-    "dynamobe91bca0": {
-      "providerPlugin": "awscloudformation",
-      "service": "DynamoDB"
     }
   }
 }

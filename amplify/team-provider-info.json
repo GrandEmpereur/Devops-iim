@@ -1,45 +1,25 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-devops-dev-140901-authRole",
-      "UnauthRoleArn": "arn:aws:iam::591933283326:role/amplify-devops-dev-140901-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::591933283326:role/amplify-devops-dev-140901-authRole",
+      "AuthRoleName": "amplify-devopstodo-dev-152927-authRole",
+      "UnauthRoleArn": "arn:aws:iam::591933283326:role/amplify-devopstodo-dev-152927-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::591933283326:role/amplify-devopstodo-dev-152927-authRole",
       "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-devops-dev-140901-deployment",
-      "UnauthRoleName": "amplify-devops-dev-140901-unauthRole",
-      "StackName": "amplify-devops-dev-140901",
-      "StackId": "arn:aws:cloudformation:eu-west-1:591933283326:stack/amplify-devops-dev-140901/ab576ef0-9da6-11ee-a2de-0ac0040f9c6b",
-      "AmplifyAppId": "d6b7n9d0e03x8"
-    }
-  },
-  "patrickdev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-devops-patrickdev-141036-authRole",
-      "UnauthRoleArn": "arn:aws:iam::591933283326:role/amplify-devops-patrickdev-141036-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::591933283326:role/amplify-devops-patrickdev-141036-authRole",
-      "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-devops-patrickdev-141036-deployment",
-      "UnauthRoleName": "amplify-devops-patrickdev-141036-unauthRole",
-      "StackName": "amplify-devops-patrickdev-141036",
-      "StackId": "arn:aws:cloudformation:eu-west-1:591933283326:stack/amplify-devops-patrickdev-141036/e414bb80-9da6-11ee-ac41-0a4fa29f4843",
-      "AmplifyAppId": "d6b7n9d0e03x8",
-      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-devops-patrickdev-141036-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+      "DeploymentBucketName": "amplify-devopstodo-dev-152927-deployment",
+      "UnauthRoleName": "amplify-devopstodo-dev-152927-unauthRole",
+      "StackName": "amplify-devopstodo-dev-152927",
+      "StackId": "arn:aws:cloudformation:eu-west-1:591933283326:stack/amplify-devopstodo-dev-152927/099b9020-9e7b-11ee-b2f0-0aa2967d038f",
+      "AmplifyAppId": "d2wu252g1exhy8"
     },
     "categories": {
-      "function": {
-        "devops1b317f9c": {
-          "deploymentBucketName": "amplify-devops-patrickdev-141036-deployment",
-          "s3Key": "amplify-builds/devops1b317f9c-6d2f7177665842676270-build.zip"
-        }
-      },
-      "auth": {
-        "devops": {}
-      },
       "api": {
-        "api18b79b30": {}
+        "devopstodo": {}
       },
-      "storage": {
-        "dynamobe91bca0": {}
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2wu252g1exhy8",
+          "type": "cicd"
+        }
       }
     }
   }
