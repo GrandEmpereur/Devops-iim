@@ -1,53 +1,97 @@
-import Link from "next/link.js";
+'use client'
+import { useState } from 'react';
+import { signUp } from 'aws-amplify/auth';
 
 const RegisterForm = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        confirmPassword: ''
+    });
+    const [error, setError] = useState('');
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.name, e.target.value);
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSignUp = async () => {
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
+
+        try {
+            const user = await signUp({
+                username: formData.email,
+                password: formData.password,
+                options: {
+                    userAttributes: {
+                        family_name: formData.lastName,
+                        name: formData.firstName
+                    }
+                }
+            });
+
+
+            console.log('Sign up successful, User:', user);
+            // Redirect or update UI after successful sign up
+        } catch (error) {
+            console.error('Error signing up:', error);
+            setError((error as Error).message || 'Error signing up');
+        }
+    };
+
     return (
-        <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign Up </h2>
-            </div>
-
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form className="space-y-6" action="#" method="POST">
-                    <div className="flex gap-10">
-                        <div>
-                            <label htmlFor="firstName" className="block text-sm font-medium leading-6 text-gray-900">First Name</label>
-                            <div className="mt-2">
-                                <input id="firstName" name="firstName" type="text" autoComplete="firstName" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                            </div>
-                        </div>
-                        <div>
-                            <label htmlFor="LastName" className="block text-sm font-medium leading-6 text-gray-900">Last Name</label>
-                            <div className="mt-2">
-                                <input id="LastName" name="LastName" type="text" autoComplete="LastName" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-                        <div className="mt-2">
-                            <input id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                        </div>
-                    </div>
-
-                    <div>
-                        <div className="flex items-center justify-between">
-                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                        </div>
-                        <div className="mt-2">
-                            <input id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                        </div>
-                    </div>
-
-                    <div>
-                        <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign Up</button>
-                    </div>
-                </form>
-
-                <p className="mt-10 text-center text-sm text-gray-500">
-                    <span>You have an account?</span>
-                    <Link href="/" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 px-3">Sign in</Link>
-                </p>
+        <div className="flex justify-center items-center h-screen bg-gray-100">
+            <div className="flex flex-col bg-white p-10 rounded-lg shadow space-y-6">
+                <h2 className="text-3xl font-bold text-center">Register</h2>
+                {error && <p className="text-red-500">{error}</p>}
+                <div className='flex gap-4'>
+                    <input
+                        name="firstName"
+                        type="text"
+                        placeholder="First Name"
+                        onChange={handleInputChange}
+                        className="border-2 rounded-lg px-3 py-2 border-gray-200 focus:outline-none focus:border-blue-500"
+                    />
+                    <input
+                        name="lastName"
+                        type="text"
+                        placeholder="Last Name"
+                        onChange={handleInputChange}
+                        className="border-2 rounded-lg px-3 py-2 border-gray-200 focus:outline-none focus:border-blue-500"
+                    />
+                </div>
+                <input
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    onChange={handleInputChange}
+                    className="border-2 rounded-lg px-3 py-2 border-gray-200 focus:outline-none focus:border-blue-500"
+                />
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    onChange={handleInputChange}
+                    className="border-2 rounded-lg px-3 py-2 border-gray-200 focus:outline-none focus:border-blue-500"
+                />
+                <input
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="Confirm Password"
+                    onChange={handleInputChange}
+                    className="border-2 rounded-lg px-3 py-2 border-gray-200 focus:outline-none focus:border-blue-500"
+                />
+                <button
+                    onClick={handleSignUp}
+                    className="block bg-blue-500 text-white p-2 rounded-lg w-full"
+                >
+                    Register
+                </button>
             </div>
         </div>
     );
