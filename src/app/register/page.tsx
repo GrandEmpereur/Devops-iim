@@ -1,20 +1,22 @@
 'use client'
-import { useContext, useState } from 'react';
-import { signUp } from 'aws-amplify/auth';
-import { useRouter } from 'next/navigation'
+import React, { useState } from 'react';
+import { signUp, confirmSignUp, autoSignIn } from 'aws-amplify/auth';
+import { useRouter } from 'next/navigation';
 
 const RegisterForm = () => {
-    const router = useRouter()
+    const router = useRouter();
     const [formData, setFormData] = useState({
         email: '',
         password: '',
         firstName: '',
         lastName: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        confirmationCode: ''
     });
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
     const [error, setError] = useState('');
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
@@ -25,38 +27,52 @@ const RegisterForm = () => {
         }
 
         try {
-            const user = await signUp({
+            await signUp({
                 username: formData.email,
                 password: formData.password,
                 options: {
                     userAttributes: {
                         family_name: formData.lastName,
                         name: formData.firstName,
-                        email: formData.email // Assurez-vous que l'email est bien inclus dans les attributs
-                    }
-                }
+                        email: formData.email
+                    },
+                    autoSignIn: true
+                },
             });
+            console.log('Sign up successful with following data:', formData);
 
-            console.log('Sign up successful, User:', user);
-
-            // Réinitialisez le formulaire
-            setFormData({
-                email: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                confirmPassword: ''
-            });
-
-            // Redirigez vers le tableau de bord
-            router.push('/dashboard');
-
-
+            setShowConfirmationModal(true);
         } catch (error) {
             console.error('Error signing up:', error);
             setError((error as Error).message || 'Error signing up');
         }
     };
+
+    const handleSignUpConfirmation = async () => {
+        try {
+            await confirmSignUp({
+                username: formData.email,
+                confirmationCode: formData.confirmationCode
+            });
+
+            await handleAutoSignIn();
+        } catch (error) {
+            console.error('Error confirming sign up', error);
+            setError((error as Error).message || 'Error confirming sign up');
+        }
+    };
+
+    async function handleAutoSignIn() {
+        try {
+            const signInOutput = await autoSignIn();
+            console.log('Auto sign-in successful:', signInOutput);
+            setShowConfirmationModal(false);
+            router.push('/dashboard');
+        } catch (error) {
+            console.error('Error during auto sign-in:', error);
+            setError((error as Error).message || 'Error during auto sign-in');
+        }
+    }
 
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100">
@@ -107,9 +123,30 @@ const RegisterForm = () => {
                     Register
                 </button>
             </div>
+
+            {showConfirmationModal && (
+                <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50">
+                    <div className="bg-white p-5 rounded">
+                        <h3 className="text-lg font-bold">Confirm Sign Up</h3>
+                        <input
+                            name="confirmationCode"
+                            type="text"
+                            placeholder="Confirmation Code"
+                            value={formData.confirmationCode}
+                            onChange={handleInputChange}
+                            className="border-2 rounded-lg px-3 py-2 border-gray-200 focus:outline-none focus:border-blue-500"
+                        />
+                        <button
+                            onClick={handleSignUpConfirmation}
+                            className="mt-3 block bg-blue-500 text-white p-2 rounded-lg w-full"
+                        >
+                            Confirm
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
 
 export default RegisterForm;
-
