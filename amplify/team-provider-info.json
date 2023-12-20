@@ -20,6 +20,15 @@
           "appId": "d2wu252g1exhy8",
           "type": "cicd"
         }
+      },
+      "auth": {
+        "devopstodobf2fe34f": {}
+      },
+      "function": {
+        "graphQlLambdaAuthorizer77d1f53a": {
+          "deploymentBucketName": "amplify-devopstodo-dev-152927-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizer77d1f53a-394964356234524e554b-build.zip"
+        }
       }
     }
   }
