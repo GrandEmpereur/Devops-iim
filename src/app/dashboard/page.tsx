@@ -1,5 +1,3 @@
-'use client'
-
 import { generateServerClientUsingCookies } from '@aws-amplify/adapter-nextjs/api';
 import { cookies } from 'next/headers';
 import { revalidatePath } from 'next/cache';
@@ -67,15 +65,6 @@ type TodoButtonProps = {
     children?: React.ReactNode;
 };
 
-const TodoButton = ({ onClick, children }: TodoButtonProps) => {
-    'use client'
-    return (
-        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onClick={onClick}>
-            {children}
-        </button>
-    );
-};
-
 const Dashboard = async () => {
     const { data, errors } = await cookiesClient.graphql({
         query: queries.listTodos
@@ -124,8 +113,6 @@ const Dashboard = async () => {
                                 <li key={todo.id} className={`flex items-center justify-between ${todo.done ? 'line-through' : ''}`}>
                                     <p>{todo.name}</p>
                                     <div className='flex gap-3'>
-                                        <TodoButton onClick={() => markTodoAsDone(todo.id)}>Done</TodoButton>
-                                        <TodoButton onClick={() => deleteTodo}>Delete</TodoButton>
                                     </div>
                                 </li>
                             );

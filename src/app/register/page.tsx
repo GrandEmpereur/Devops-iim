@@ -1,8 +1,10 @@
 'use client'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { signUp } from 'aws-amplify/auth';
+import { useRouter } from 'next/navigation'
 
 const RegisterForm = () => {
+    const router = useRouter()
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -13,7 +15,6 @@ const RegisterForm = () => {
     const [error, setError] = useState('');
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.name, e.target.value);
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
@@ -30,14 +31,27 @@ const RegisterForm = () => {
                 options: {
                     userAttributes: {
                         family_name: formData.lastName,
-                        name: formData.firstName
+                        name: formData.firstName,
+                        email: formData.email // Assurez-vous que l'email est bien inclus dans les attributs
                     }
                 }
             });
 
-
             console.log('Sign up successful, User:', user);
-            // Redirect or update UI after successful sign up
+
+            // Réinitialisez le formulaire
+            setFormData({
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                confirmPassword: ''
+            });
+
+            // Redirigez vers le tableau de bord
+            router.push('/dashboard');
+
+
         } catch (error) {
             console.error('Error signing up:', error);
             setError((error as Error).message || 'Error signing up');
@@ -98,3 +112,4 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
+

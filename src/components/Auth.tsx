@@ -6,7 +6,7 @@ import config from '@/amplifyconfiguration.json';
 
 import { ReactNode } from 'react';
 
-function Root({ children }: { children: ReactNode }) {
+function Auth({ children }: { children: ReactNode }) {
     useEffect(() => {
         Amplify.configure(config);
     }, []);
@@ -14,4 +14,4 @@ function Root({ children }: { children: ReactNode }) {
     return <>{children}</>;
 }
 
-export default Root;
+export default Auth;
