@@ -76,7 +76,14 @@
         "devopstodobf2fe34f": {}
       },
       "function": {
-        "graphQlLambdaAuthorizer77d1f53a": {}
+        "graphQlLambdaAuthorizer77d1f53a": {
+          "deploymentBucketName": "amplify-devopstodo-dev-101109-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizer77d1f53a-394964356234524e554b-build.zip"
+        },
+        "graphQlLambdaAuthorizerb1dff100": {
+          "deploymentBucketName": "amplify-devopstodo-dev-101109-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizerb1dff100-69346363484c65776544-build.zip"
+        }
       },
       "hosting": {
         "amplifyhosting": {

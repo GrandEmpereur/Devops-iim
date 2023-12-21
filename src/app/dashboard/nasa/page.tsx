@@ -1,9 +1,9 @@
 'use client'
 
 import NavBar from '@/components/dashboard/NavBar';
-import DashboardBody from '@/components/dashboard/DashboardBody';
-import { useEffect, useState } from 'react';
+import { Title, Text } from '@tremor/react';
 import { fetchUserAttributes } from 'aws-amplify/auth';
+import { useEffect, useState } from 'react';
 
 interface UserAttributes {
     firstName: string;
@@ -11,7 +11,7 @@ interface UserAttributes {
     email: string;
 }
 
-const Dashboard = async () => {
+const TodoPage = () => {
     const [user, setUser] = useState<UserAttributes>({
         firstName: '',
         lastName: '',
@@ -33,17 +33,19 @@ const Dashboard = async () => {
             console.error('Error fetching current user:', err);
         }
     }
+
     useEffect(() => {
         fetchCurrentUser();
     }, []);
-
     return (
-        <div className="">
+        <>
             <NavBar user={user} />
-            <DashboardBody />
-        </div>
+            <div className='p-4 md:p-10 mx-auto max-w-7xl'>
+                <Title>Nasa API</Title>
+                <Text>Vous trouverez les informations de la Nasa</Text>
+            </div>
+        </>
     );
 };
 
-export default Dashboard;
-
+export default TodoPage;
