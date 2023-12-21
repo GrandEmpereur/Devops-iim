@@ -23,7 +23,6 @@ type User = {
     firstName: string,
     lastName: string,
     email: string,
-    picture: string
 }
 
 export default function Navbar({ user }: { user: User }) {
@@ -95,7 +94,7 @@ export default function Navbar({ user }: { user: User }) {
                                             <span className="sr-only">Open user menu</span>
                                             <Image
                                                 className="h-8 w-8 rounded-full"
-                                                src={user?.picture || 'https://avatar.vercel.sh/leerob'}
+                                                src='https://avatar.vercel.sh/leerob'
                                                 height={32}
                                                 width={32}
                                                 alt={`${user?.firstName, user?.lastName || 'placeholder'} avatar`}

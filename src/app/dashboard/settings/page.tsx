@@ -17,7 +17,6 @@ interface UserAttributes {
     firstName: string;
     lastName: string;
     email: string;
-    picture: string;
 }
 
 interface Passwords {
@@ -31,7 +30,6 @@ const UserSettingsPage = () => {
         firstName: '',
         lastName: '',
         email: '',
-        picture: ''
     });
     const [passwords, setPasswords] = useState<Passwords>({
         oldPassword: '',
@@ -50,8 +48,7 @@ const UserSettingsPage = () => {
             const firstName = userAttributes?.name ?? '';
             const lastName = userAttributes?.family_name ?? '';
             const email = userAttributes?.email ?? '';
-            const picture = userAttributes?.picture ?? '';
-            setUser({ firstName, lastName, email, picture });
+            setUser({ firstName, lastName, email });
         } catch (err) {
             console.error('Error fetching current user:', err);
         }
@@ -61,15 +58,13 @@ const UserSettingsPage = () => {
         updatedName: string,
         updateFamilyName: string,
         updateEmail: string,
-        updatePicture: string
     ) {
         try {
-            const attributes = await updateUserAttributes({
+            await updateUserAttributes({
                 userAttributes: {
                     name: updatedName,
                     family_name: updateFamilyName,
                     email: updateEmail,
-                    picture: updatePicture
                 }
             });
             toast.success("Profil mis à jour avec succès !");
@@ -118,6 +113,7 @@ const UserSettingsPage = () => {
                                 <Text>Nom</Text>
                                 <TextInput
                                     value={user.firstName}
+                                    type='text'
                                     onChange={(e) => setUser({ ...user, firstName: e.target.value })}
                                 />
                             </div>
@@ -125,6 +121,7 @@ const UserSettingsPage = () => {
                                 <Text>Prénom</Text>
                                 <TextInput
                                     value={user.lastName}
+                                    type='text'
                                     onChange={(e) => setUser({ ...user, lastName: e.target.value })}
                                 />
                             </div>
@@ -139,14 +136,13 @@ const UserSettingsPage = () => {
                             <div>
                                 <Text>Photo de profils</Text>
                                 <TextInput
-                                    placeholder={user.picture}
                                     type='url'
-                                    onChange={(e) => setUser({ ...user, picture: e.target.value })}
+                                    disabled
                                 />
                             </div>
                         </div>
                         <div>
-                            <Button size='md' onClick={() => handleUpdateEmailAndNameAttributes(user.firstName, user.lastName, user.email, user.picture)}>Sauvegarder les Modification</Button>
+                            <Button size='md' onClick={() => handleUpdateEmailAndNameAttributes(user.firstName, user.lastName, user.email)}>Sauvegarder les Modification</Button>
                         </div>
                     </div>
                 </Card>
