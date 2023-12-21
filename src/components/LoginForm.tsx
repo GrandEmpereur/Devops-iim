@@ -1,20 +1,36 @@
 'use client'
-import { useState, useContext } from 'react';
-import { signIn } from 'aws-amplify/auth';
+import { useEffect, useState } from 'react';
+import { signIn, fetchAuthSession } from 'aws-amplify/auth';
 import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
+    // Définir un état pour les données du formulaire
     const router = useRouter();
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
+    const [formData, setFormData] = useState({ email: '', password: '' });
     const [error, setError] = useState('');
 
+    useEffect(() => {
+        checkUserSession();
+    }, []);
+
+    // Vérifie si l'utilisateur est déjà connecté
+    const checkUserSession = async () => {
+        try {
+            const session = await fetchAuthSession();
+            if (session) {
+                router.push('/dashboard');
+            }
+        } catch (error) {
+            console.log('No active user session:', error);
+        }
+    };
+
+    // Gère les modifications des champs de formulaire
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // Gère la connexion de l'utilisateur
     const handleSignIn = async () => {
         try {
             const user = await signIn({
@@ -23,9 +39,7 @@ const LoginForm = () => {
             });
 
             console.log('Sign in successful, User:', user);
-            if (user) {
-                router.push('/dashboard');
-            }
+            router.push('/dashboard');
         } catch (error) {
             console.error('Error signing in:', error);
             setError((error as Error).message || 'Error signing in');
