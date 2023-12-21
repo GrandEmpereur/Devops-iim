@@ -19,7 +19,13 @@ function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ');
 }
 
-export default function Navbar() {
+type User = {
+    firstName: string,
+    lastName: string,
+    email: string,
+}
+
+export default function Navbar({ user }: { user: User }) {
     const pathname = usePathname();
     const router = useRouter();
 
@@ -91,7 +97,7 @@ export default function Navbar() {
                                                 src='https://avatar.vercel.sh/leerob'
                                                 height={32}
                                                 width={32}
-                                                alt={`avatar`}
+                                                alt={`${user?.firstName, user?.lastName || 'placeholder'} avatar`}
                                             />
                                         </Menu.Button>
                                     </div>

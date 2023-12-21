@@ -1,6 +1,0 @@
-{
-  "AppSyncApiName": "devopstodo",
-  "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-12-20T08:32:04.876Z"
-}

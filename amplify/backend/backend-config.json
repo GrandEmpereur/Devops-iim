@@ -1,23 +1,5 @@
 {
-  "api": {
-    "devopstodo": {
-      "dependsOn": [],
-      "output": {
-        "authConfig": {
-          "additionalAuthenticationProviders": [],
-          "defaultAuthentication": {
-            "authenticationType": "AWS_LAMBDA",
-            "lambdaAuthorizerConfig": {
-              "lambdaFunction": "graphQlLambdaAuthorizer77d1f53a",
-              "ttlSeconds": "300"
-            }
-          }
-        }
-      },
-      "providerPlugin": "awscloudformation",
-      "service": "AppSync"
-    }
-  },
+  "api": {},
   "auth": {
     "devopstodobf2fe34f": {
       "customAuth": false,
@@ -53,6 +35,11 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "graphQlLambdaAuthorizerb1dff100": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "hosting": {
@@ -76,6 +63,22 @@
         {
           "category": "function",
           "resourceName": "graphQlLambdaAuthorizer77d1f53a"
+        }
+      ]
+    },
+    "AMPLIFY_function_graphQlLambdaAuthorizerb1dff100_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "graphQlLambdaAuthorizerb1dff100"
+        }
+      ]
+    },
+    "AMPLIFY_function_graphQlLambdaAuthorizerb1dff100_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "graphQlLambdaAuthorizerb1dff100"
         }
       ]
     },

@@ -1,11 +1,4 @@
 export type AmplifyDependentResourcesAttributes = {
-  "api": {
-    "devopstodo": {
-      "GraphQLAPIEndpointOutput": "string",
-      "GraphQLAPIIdOutput": "string",
-      "GraphQLAPIKeyOutput": "string"
-    }
-  },
   "auth": {
     "devopstodobf2fe34f": {
       "AppClientID": "string",
@@ -19,6 +12,13 @@ export type AmplifyDependentResourcesAttributes = {
   },
   "function": {
     "graphQlLambdaAuthorizer77d1f53a": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
+    "graphQlLambdaAuthorizerb1dff100": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
