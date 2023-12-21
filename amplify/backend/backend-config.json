@@ -62,22 +62,6 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_graphQlLambdaAuthorizer77d1f53a_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "graphQlLambdaAuthorizer77d1f53a"
-        }
-      ]
-    },
-    "AMPLIFY_function_graphQlLambdaAuthorizer77d1f53a_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "graphQlLambdaAuthorizer77d1f53a"
-        }
-      ]
-    },
     "AMPLIFY_hosting_amplifyhosting_appId": {
       "usedBy": [
         {
