@@ -6,4 +6,18 @@ type Todo @model {
   id: ID!
   name: String!
   description: String
+  done: Boolean
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
+
+type User @model {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String! 
+  todos: [Todo] @hasMany (fields: ["id"])
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
