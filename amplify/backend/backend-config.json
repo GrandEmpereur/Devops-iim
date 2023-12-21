@@ -1,37 +1,5 @@
 {
-  "api": {
-    "devopstodo": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "UserPoolId"
-          ],
-          "category": "auth",
-          "resourceName": "devopstodobf2fe34f"
-        }
-      ],
-      "output": {
-        "authConfig": {
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-              "userPoolConfig": {
-                "userPoolId": "authdevopstodobf2fe34f"
-              }
-            }
-          ],
-          "defaultAuthentication": {
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
-            },
-            "authenticationType": "API_KEY"
-          }
-        }
-      },
-      "providerPlugin": "awscloudformation",
-      "service": "AppSync"
-    }
-  },
+  "api": {},
   "auth": {
     "devopstodobf2fe34f": {
       "customAuth": false,
@@ -67,6 +35,11 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "graphQlLambdaAuthorizerb1dff100": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "hosting": {
@@ -77,6 +50,38 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_graphQlLambdaAuthorizer77d1f53a_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "graphQlLambdaAuthorizer77d1f53a"
+        }
+      ]
+    },
+    "AMPLIFY_function_graphQlLambdaAuthorizer77d1f53a_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "graphQlLambdaAuthorizer77d1f53a"
+        }
+      ]
+    },
+    "AMPLIFY_function_graphQlLambdaAuthorizerb1dff100_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "graphQlLambdaAuthorizerb1dff100"
+        }
+      ]
+    },
+    "AMPLIFY_function_graphQlLambdaAuthorizerb1dff100_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "graphQlLambdaAuthorizerb1dff100"
+        }
+      ]
+    },
     "AMPLIFY_hosting_amplifyhosting_appId": {
       "usedBy": [
         {
