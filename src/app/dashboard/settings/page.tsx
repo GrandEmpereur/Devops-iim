@@ -17,6 +17,7 @@ interface UserAttributes {
     firstName: string;
     lastName: string;
     email: string;
+    picture: string;
 }
 
 interface Passwords {
@@ -29,7 +30,8 @@ const UserSettingsPage = () => {
     const [user, setUser] = useState<UserAttributes>({
         firstName: '',
         lastName: '',
-        email: ''
+        email: '',
+        picture: ''
     });
     const [passwords, setPasswords] = useState<Passwords>({
         oldPassword: '',
@@ -48,7 +50,8 @@ const UserSettingsPage = () => {
             const firstName = userAttributes?.name ?? '';
             const lastName = userAttributes?.family_name ?? '';
             const email = userAttributes?.email ?? '';
-            setUser({ firstName, lastName, email });
+            const picture = userAttributes?.picture ?? '';
+            setUser({ firstName, lastName, email, picture });
         } catch (err) {
             console.error('Error fetching current user:', err);
         }
@@ -57,14 +60,16 @@ const UserSettingsPage = () => {
     async function handleUpdateEmailAndNameAttributes(
         updatedName: string,
         updateFamilyName: string,
-        updateEmail: string
+        updateEmail: string,
+        updatePicture: string
     ) {
         try {
             const attributes = await updateUserAttributes({
                 userAttributes: {
                     name: updatedName,
                     family_name: updateFamilyName,
-                    email: updateEmail
+                    email: updateEmail,
+                    picture: updatePicture
                 }
             });
             toast.success("Profil mis à jour avec succès !");
@@ -98,7 +103,7 @@ const UserSettingsPage = () => {
 
     return (
         <>
-            <NavBar />
+            <NavBar user={user} />
             <ToastContainer position="top-right" />
             <div className='p-4 md:p-10 mx-auto max-w-7xl'>
 
@@ -134,14 +139,14 @@ const UserSettingsPage = () => {
                             <div>
                                 <Text>Photo de profils</Text>
                                 <TextInput
-                                    placeholder='https://avatar.vercel.sh/leerob'
+                                    placeholder={user.picture}
                                     type='url'
-                                    disabled
+                                    onChange={(e) => setUser({ ...user, picture: e.target.value })}
                                 />
                             </div>
                         </div>
                         <div>
-                            <Button size='md' onClick={() => handleUpdateEmailAndNameAttributes(user.firstName, user.lastName, user.email)}>Sauvegarder les Modification</Button>
+                            <Button size='md' onClick={() => handleUpdateEmailAndNameAttributes(user.firstName, user.lastName, user.email, user.picture)}>Sauvegarder les Modification</Button>
                         </div>
                     </div>
                 </Card>

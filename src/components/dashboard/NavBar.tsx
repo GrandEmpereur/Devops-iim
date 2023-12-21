@@ -19,7 +19,14 @@ function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ');
 }
 
-export default function Navbar() {
+type User = {
+    firstName: string,
+    lastName: string,
+    email: string,
+    picture: string
+}
+
+export default function Navbar({ user }: { user: User }) {
     const pathname = usePathname();
     const router = useRouter();
 
@@ -88,10 +95,10 @@ export default function Navbar() {
                                             <span className="sr-only">Open user menu</span>
                                             <Image
                                                 className="h-8 w-8 rounded-full"
-                                                src='https://avatar.vercel.sh/leerob'
+                                                src={user?.picture || 'https://avatar.vercel.sh/leerob'}
                                                 height={32}
                                                 width={32}
-                                                alt={`avatar`}
+                                                alt={`${user?.firstName, user?.lastName || 'placeholder'} avatar`}
                                             />
                                         </Menu.Button>
                                     </div>
