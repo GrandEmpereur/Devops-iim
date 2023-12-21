@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": "18.18.x"
+  },
   "dependencies": {
     "@aws-amplify/adapter-nextjs": "^1.0.8",
     "@aws-amplify/ui-react": "^6.0.6",

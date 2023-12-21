@@ -41,8 +41,8 @@ const TodoPage = () => {
         <>
             <NavBar user={user} />
             <div className='p-4 md:p-10 mx-auto max-w-7xl'>
-                <Title>Todo</Title>
-                <Text>Vous pouvez commencer à utiliser votre application.</Text>
+                <Title>Nasa API</Title>
+                <Text>Vous trouverez les informations de la Nasa</Text>
             </div>
         </>
     );

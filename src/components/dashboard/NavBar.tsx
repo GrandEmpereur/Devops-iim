@@ -11,7 +11,7 @@ import { signOut } from 'aws-amplify/auth';
 
 const navigation = [
     { name: 'Dashboard', href: '/dashboard' },
-    { name: 'Todo', href: '/dashboard/todo' },
+    { name: 'Nasa', href: '/dashboard/nasa' },
     { name: 'Settings', href: '/dashboard/settings' },
 ];
 
