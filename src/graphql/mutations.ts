@@ -8,6 +8,25 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
+export const deleteTodo = /* GraphQL */ `mutation DeleteTodo(
+  $input: DeleteTodoInput!
+  $condition: ModelTodoConditionInput
+) {
+  deleteTodo(input: $input, condition: $condition) {
+    id
+    name
+    description
+    done
+    owner
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteTodoMutationVariables,
+  APITypes.DeleteTodoMutation
+>;
 export const createTodo = /* GraphQL */ `mutation CreateTodo(
   $input: CreateTodoInput!
   $condition: ModelTodoConditionInput
@@ -17,6 +36,7 @@ export const createTodo = /* GraphQL */ `mutation CreateTodo(
     name
     description
     done
+    owner
     createdAt
     updatedAt
     __typename
@@ -35,6 +55,7 @@ export const updateTodo = /* GraphQL */ `mutation UpdateTodo(
     name
     description
     done
+    owner
     createdAt
     updatedAt
     __typename
@@ -43,88 +64,4 @@ export const updateTodo = /* GraphQL */ `mutation UpdateTodo(
 ` as GeneratedMutation<
   APITypes.UpdateTodoMutationVariables,
   APITypes.UpdateTodoMutation
->;
-export const deleteTodo = /* GraphQL */ `mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
-) {
-  deleteTodo(input: $input, condition: $condition) {
-    id
-    name
-    description
-    done
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteTodoMutationVariables,
-  APITypes.DeleteTodoMutation
->;
-export const createUser = /* GraphQL */ `mutation CreateUser(
-  $input: CreateUserInput!
-  $condition: ModelUserConditionInput
-) {
-  createUser(input: $input, condition: $condition) {
-    id
-    firstName
-    lastName
-    email
-    todos {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreateUserMutationVariables,
-  APITypes.CreateUserMutation
->;
-export const updateUser = /* GraphQL */ `mutation UpdateUser(
-  $input: UpdateUserInput!
-  $condition: ModelUserConditionInput
-) {
-  updateUser(input: $input, condition: $condition) {
-    id
-    firstName
-    lastName
-    email
-    todos {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateUserMutationVariables,
-  APITypes.UpdateUserMutation
->;
-export const deleteUser = /* GraphQL */ `mutation DeleteUser(
-  $input: DeleteUserInput!
-  $condition: ModelUserConditionInput
-) {
-  deleteUser(input: $input, condition: $condition) {
-    id
-    firstName
-    lastName
-    email
-    todos {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteUserMutationVariables,
-  APITypes.DeleteUserMutation
 >;
