@@ -4,11 +4,8 @@
     "apiName": "devopstodo",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "AWS_LAMBDA",
-      "lambdaFunction": "graphQlLambdaAuthorizer77d1f53a",
-      "ttlSeconds": "300"
-    },
-    "conflictResolution": {},
-    "additionalAuthTypes": []
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
   }
 }
